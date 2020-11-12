@@ -7,6 +7,7 @@
 # writing code that outputs interesting information when being run
 # interactively without being annoying when batch processing data.
 
+import sys
 from IPython.core.display import display
 from pprint import pprint
 
@@ -15,7 +16,11 @@ class Session:
     """Control behavior in interactive vs. batch mode"""
 
     def __init__(self) -> None:
-        self.is_interactive = False
+        self.is_interactive = self.python_is_interactive
+    
+    @property
+    def python_is_interactive(self):
+        return hasattr(sys, "ps1")
 
 
 session = Session()

@@ -3,11 +3,26 @@
 """Tests for the `nbex.interactive` module."""
 
 from nbex.interactive import (
+    Session,
     session,
     display_interactive,
     print_interactive,
     pprint_interactive,
 )
+
+# The following two tests assume the interpreter is not running in interactive
+# mode.
+
+def test_python_is_interactive_returns_false():
+    assert Session().python_is_interactive is False
+
+
+def test_session_initializes_is_interactive_to_false():
+    assert Session().is_interactive is False
+
+
+# TODO: maybe add a test that launches an interactive python interpreter and
+# checks that session.is_interactive is true in there?
 
 
 def test_session_can_be_set_to_non_interactive():
