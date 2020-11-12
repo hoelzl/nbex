@@ -31,10 +31,15 @@ Features
 --------
 
 * Switch between development and deployment modes
+
   * Use development mode to configure smaller data tables, models, etc.
+
   * Use deployment mode to run full deployment and training
+
 * Switch between interactive and command-line usage
+
   * Use interactive mode to interact with the code in a notebook, receive styled IPython output, etc.
+
   * Use command-line usage to run the code in your CI system, etc.
 
 Credits
