@@ -1,0 +1,50 @@
+{% set name = "nbex" %}
+{% set version = "0.2.2" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: d7a1a21e220e38580134c7425ffe645cf412351f51c8ef2f890db8f0c1053332
+
+build:
+  number: 0
+  entry_points:
+    - nbex=nbex.cli:main
+  ignore_run_exports:
+    - click
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - click >=7.1.2
+    - ipython >=6.0
+    - pip
+    - python
+    - pytest-runner >=5.2
+  run:
+    - click >=7.1.2
+    - python
+
+test:
+  imports:
+    - nbex
+  commands:
+    - nbex --help
+  requires:
+    - pytest >=3.8
+
+about:
+  home: "https://github.com/hoelzl/nbex"
+  license: MIT
+  license_family: MIT
+  license_file: 
+  summary: "Support for code that works interactively and in batch mode."
+  doc_url: https://nbex.readthedocs.io
+  dev_url: https://github.com/hoelzl/nbex
+
+extra:
+  recipe-maintainers:
+    - hoelzl
