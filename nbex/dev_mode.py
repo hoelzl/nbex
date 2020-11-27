@@ -1,7 +1,7 @@
 from nbex.interactive import session, Session
 
 
-session.dev_mode = False
+session.dev_mode = session.is_interactive
 session.dev_mode_table_size = 1000
 
 
