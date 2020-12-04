@@ -11,16 +11,23 @@ with open("HISTORY.rst") as history_file:
     history = history_file.read()
 
 requirements = [
-    "click>=7.1.2",
-    "ipython>=6.0",
+    "ipython>=6.0"
 ]
 
 setup_requirements = [
-    "pytest-runner",
+    "black",
+    "coverage>=5.3",
+    "pip>=20.2.4",
+    "pytest-runner>=3.0",
+    "sphinx>=3.3.0",
+    "wheel>=0.35.1",
+    "twine>=3.2.0",
+    "watchdog>=0.9.0",
 ]
 
 test_requirements = [
-    "pytest>=3.8",
+    "pytest>=3",
+    "tox>=3.20.1",
 ]
 
 setup(
