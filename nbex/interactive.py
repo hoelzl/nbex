@@ -7,7 +7,9 @@
 # writing code that outputs interesting information when being run
 # interactively without being annoying when batch processing data.
 
+# %%
 import sys
+import inspect
 from IPython.core.display import display
 from pprint import pprint
 
@@ -16,11 +18,44 @@ class Session:
     """Control behavior in interactive vs. batch mode"""
 
     def __init__(self) -> None:
-        self.is_interactive = self.python_is_interactive
+        self._is_interactive_forced_false = False
+
+    @property
+    def python_is_interactive(self) -> bool:
+        return hasattr(sys, "ps1")
+
+    @staticmethod
+    def _find_first_non_nbex_stack_frame():
+        caller_frame = inspect.currentframe().f_back
+
+        # Walk up at most 100 stack frames to find one that is not from
+        # nbex.interactive
+        for _ in range(100):
+            if caller_frame.f_globals["__name__"] == "nbex.interactive":
+                caller_frame = caller_frame.f_back
+            else:
+                break
+        else:
+            print("Walked 100 stack frames inside nbex.interactive?")
+
+        return caller_frame
     
     @property
-    def python_is_interactive(self):
-        return hasattr(sys, "ps1")
+    def _is_called_from_main(self):
+        caller_frame = self._find_first_non_nbex_stack_frame()
+        return caller_frame.f_globals["__name__"] == "__main__"
+
+    @property
+    def is_interactive(self) -> bool:
+        if self._is_interactive_forced_false:
+            return False
+
+
+        return self._is_called_from_main and self.python_is_interactive
+
+    @is_interactive.setter
+    def set_is_interactive(self, value: bool) -> None:
+        self._is_interactive_forced_false = not value
 
 
 session = Session()
@@ -42,3 +77,6 @@ def print_interactive(*obj: object):
     """Print `obj` when in interactive mode."""
     if session.is_interactive:
         print(*obj)
+
+
+# %%
