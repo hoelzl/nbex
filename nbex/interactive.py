@@ -18,7 +18,7 @@ class Session:
     """Control behavior in interactive vs. batch mode"""
 
     def __init__(self) -> None:
-        self._is_interactive_forced_false = False
+        self.forced_interactive_value = None
 
     @property
     def python_is_interactive(self) -> bool:
@@ -36,7 +36,7 @@ class Session:
             else:
                 break
         else:
-            print("Walked 100 stack frames inside nbex.interactive?")
+            raise UserWarning("Walked 100 stack frames inside nbex.interactive?")
 
         return caller_frame
     
@@ -47,15 +47,10 @@ class Session:
 
     @property
     def is_interactive(self) -> bool:
-        if self._is_interactive_forced_false:
-            return False
-
-
-        return self._is_called_from_main and self.python_is_interactive
-
-    @is_interactive.setter
-    def set_is_interactive(self, value: bool) -> None:
-        self._is_interactive_forced_false = not value
+        if self.forced_interactive_value is None:
+            return self._is_called_from_main and self.python_is_interactive
+        else:
+            return self.forced_interactive_value
 
 
 session = Session()

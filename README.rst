@@ -42,6 +42,26 @@ Features
 
   * Use command-line usage to run the code in your CI system, etc.
 
+Installation for Development
+----------------------------
+
+To develop `nbex` with a standard Python environment install it as
+
+.. code-block:: bash
+
+  pip install -e .
+
+from the root directory of the package.
+
+If you are using conda, make sure that you have the `conda-build` package installed
+and then install `nbex` with
+
+.. code-block:: bash
+
+  conda develop .
+
+from the root directory of the package.
+
 Credits
 -------
 

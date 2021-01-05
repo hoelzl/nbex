@@ -17,7 +17,7 @@ def test_python_is_interactive_returns_false():
     assert Session().python_is_interactive is False
 
 
-def test_session_initializes_is_interactive_to_false():
+def test_session_is_interactive_is_false_unless_forced():
     assert Session().is_interactive is False
 
 
@@ -25,20 +25,20 @@ def test_session_initializes_is_interactive_to_false():
 # checks that session.is_interactive is true in there?
 
 
-def test_session_can_be_set_to_non_interactive():
-    session.is_interactive = False
+def test_session_can_be_forced_to_non_interactive():
+    session.forced_interactive_value = False
     assert not session.is_interactive
 
 
-def test_session_can_be_set_to_interactive():
-    session.is_interactive = True
+def test_session_can_be_forced_to_interactive():
+    session.forced_interactive_value = True
     assert session.is_interactive
 
 
 def test_display_interactive_generates_no_output_when_session_not_interactive(
     capsys,
 ):
-    session.is_interactive = False
+    session.forced_interactive_value = False
     display_interactive("Hello")
     out, err = capsys.readouterr()
     assert not out
@@ -46,7 +46,7 @@ def test_display_interactive_generates_no_output_when_session_not_interactive(
 
 
 def test_display_interactive_generates_output_when_session_interactive(capsys):
-    session.is_interactive = True
+    session.forced_interactive_value = True
     display_interactive("Hello")
     out, err = capsys.readouterr()
     assert "Hello" in out
@@ -56,7 +56,7 @@ def test_display_interactive_generates_output_when_session_interactive(capsys):
 def test_pprint_interactive_generates_no_output_when_session_not_interactive(
     capsys,
 ):
-    session.is_interactive = False
+    session.forced_interactive_value = False
     pprint_interactive("Hello")
     out, err = capsys.readouterr()
     assert not out
@@ -64,7 +64,7 @@ def test_pprint_interactive_generates_no_output_when_session_not_interactive(
 
 
 def test_pprint_interactive_generates_output_when_session_interactive(capsys):
-    session.is_interactive = True
+    session.forced_interactive_value = True
     pprint_interactive([1, 2])
     out, err = capsys.readouterr()
     assert out == "[1, 2]\n"
@@ -72,7 +72,7 @@ def test_pprint_interactive_generates_output_when_session_interactive(capsys):
 
 
 def test_pprint_interactive_pretty_prints_output(capsys):
-    session.is_interactive = True
+    session.forced_interactive_value = True
     # Generate a list that is long enough to trigger line breaks between
     # elements.
     pprint_interactive(list(range(1, 40)))
@@ -87,7 +87,7 @@ def test_pprint_interactive_pretty_prints_output(capsys):
 def test_print_interactive_generates_no_output_when_session_not_interactive(
     capsys,
 ):
-    session.is_interactive = False
+    session.forced_interactive_value = False
     print_interactive("Hello")
     out, err = capsys.readouterr()
     assert not out
@@ -95,7 +95,7 @@ def test_print_interactive_generates_no_output_when_session_not_interactive(
 
 
 def test_print_interactive_generates_output_when_session_interactive(capsys):
-    session.is_interactive = True
+    session.forced_interactive_value = True
     print_interactive([1, 2])
     out, err = capsys.readouterr()
     assert out == "[1, 2]\n"
