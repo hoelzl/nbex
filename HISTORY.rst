@@ -25,5 +25,10 @@ History
 0.3.1 (2021-01-05)
 ------------------
 
-* Add `session.forced_interactive_value` property to override automatic
+* Add :code:`session.forced_interactive_value` property to override automatic
   detection.
+
+0.3.2 (2021-01-05)
+------------------
+
+* Improvements to build and release targets, no changes to Python code.

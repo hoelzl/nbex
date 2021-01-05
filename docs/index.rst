@@ -1,5 +1,5 @@
-Welcome to Notebook-like Executables's documentation!
-======================================
+Welcome to the documentation of :code:`nbex`!
+=============================================
 
 .. toctree::
    :maxdepth: 2
