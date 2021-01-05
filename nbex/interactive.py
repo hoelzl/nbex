@@ -39,7 +39,7 @@ class Session:
             raise UserWarning("Walked 100 stack frames inside nbex.interactive?")
 
         return caller_frame
-    
+
     @property
     def _is_called_from_main(self):
         caller_frame = self._find_first_non_nbex_stack_frame()

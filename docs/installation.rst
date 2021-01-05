@@ -40,11 +40,17 @@ Or download the `tarball`_:
 
     $ curl -OJL https://github.com/hoelzl/nbex/tarball/master
 
-Once you have a copy of the source, you can install it with:
+Once you have a copy of the source, you can install it for development with pip:
 
 .. code-block:: console
 
-    $ python setup.py install
+    $ pip install -e .
+
+or with conda (if you have the `conda-build` package in your environment):
+
+.. code-block:: console
+
+    $ conda develop .
 
 
 .. _Github repo: https://github.com/hoelzl/nbex

@@ -13,6 +13,7 @@ from nbex.interactive import (
 # The following two tests assume the interpreter is not running in interactive
 # mode.
 
+
 def test_python_is_interactive_returns_false():
     assert Session().python_is_interactive is False
 

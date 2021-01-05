@@ -48,7 +48,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint: ## check style with flake8
-	flake8 nbex tests
+	flake8 --max-line-length=88 nbex tests
 
 test: ## run tests quickly with the default Python
 	pytest
@@ -82,4 +82,14 @@ dist: clean ## builds source and wheel package
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	pip -e install .
+
+conda-release: conda-dist ## package and upload a release for conda
+	# anaconda upload
+	echo "Not yet implemented"
+
+conda-dist: ## build anaconda packages
+	conda-build .
+
+conda-install: clean ## install the package into the current conda environment
+	conda develop .
