@@ -23,6 +23,7 @@ History
 * Improved algorithm for figuring out whether a session is interactive or not.
 
 0.3.1 (2021-01-05)
+------------------
 
 * Add `session.forced_interactive_value` property to override automatic
   detection.
