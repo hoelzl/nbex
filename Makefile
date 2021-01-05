@@ -98,12 +98,15 @@ CONDA_DIST_FILES = \
 	build/conda-build/win-32/nbex-0.3.1-py38_0.tar.bz2 \
 	build/conda-build/win-64/nbex-0.3.1-py38_0.tar.bz2
 
-conda-release: $(CONDA_DIST_FILES) ## package and upload a release for conda
+build/target-file:
+	conda-build . --output-folder build/conda-build --output > build/target-file
+
+conda-release: build/target-file $(CONDA_DIST_FILES) ## package and upload a release for conda
+	conda convert --platform all `cat build/target-file` -o build/conda-build
 	anaconda upload --skip-existing $(CONDA_DIST_FILES)
 
 conda-dist: ## build anaconda packages
 	conda-build . --output-folder build/conda-build
-	conda convert --platform all build/conda-build/linux-64/nbex-0.3.1-py38_0.tar.bz2 -o build/conda-build
 
 conda-install: clean ## install the package into the current conda environment
 	conda develop .
