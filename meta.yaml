@@ -1,12 +1,12 @@
 {% set name = "nbex" %}
-{% set version = "0.3.1" %}
+{% set version = "0.3.2" %}
 
 package:
   name: "{{ name|lower }}"
   version: "{{ version }}"
 
 source:
-  git_rev: v0.3.1
+  git_rev: v0.3.2
   git_url: https://github.com/hoelzl/nbex.git
 
 build:
