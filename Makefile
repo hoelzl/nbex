@@ -101,7 +101,7 @@ CONDA_DIST_FILES = \
 build/target-file:
 	conda-build . --output-folder build/conda-build --output > build/target-file
 
-conda-release: build/target-file $(CONDA_DIST_FILES) ## package and upload a release for conda
+conda-release: build/target-file ## package and upload a release for conda
 	conda convert --platform all `cat build/target-file` -o build/conda-build
 	anaconda upload --skip-existing $(CONDA_DIST_FILES)
 
