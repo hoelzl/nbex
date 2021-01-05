@@ -84,13 +84,26 @@ dist: clean ## builds source and wheel package
 install: clean ## install the package to the active Python's site-packages
 	pip -e install .
 
-conda-release: conda-dist ## package and upload a release for conda
-	anaconda upload build/conda-conv/*
+CONDA_DIST_FILES = \
+	build/conda-build/linux-32/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/linux-64/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/linux-aarch64/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/linux-armv6l/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/linux-armv7l/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/linux-ppc64/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/linux-ppc64le/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/linux-s390x/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/osx-64/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/osx-arm64/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/win-32/nbex-0.3.1-py38_0.tar.bz2 \
+	build/conda-build/win-64/nbex-0.3.1-py38_0.tar.bz2
+
+conda-release: $(CONDA_DIST_FILES) ## package and upload a release for conda
+	anaconda upload --skip-existing $(CONDA_DIST_FILES)
 
 conda-dist: ## build anaconda packages
-	mkdir -p build/conda-build build/conda-conv
 	conda-build . --output-folder build/conda-build
-	conda convert --platform all build/conda-build/linux-64/nbex-0.3.1-py38_0.tar.bz2 -o build/conda-conv
+	conda convert --platform all build/conda-build/linux-64/nbex-0.3.1-py38_0.tar.bz2 -o build/conda-build
 
 conda-install: clean ## install the package into the current conda environment
 	conda develop .
