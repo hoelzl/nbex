@@ -85,11 +85,12 @@ install: clean ## install the package to the active Python's site-packages
 	pip -e install .
 
 conda-release: conda-dist ## package and upload a release for conda
-	# anaconda upload
-	echo "Not yet implemented"
+	anaconda upload build/conda-conv/*
 
 conda-dist: ## build anaconda packages
-	conda-build .
+	mkdir -p build/conda-build build/conda-conv
+	conda-build . --output-folder build/conda-build
+	conda convert --platform all build/conda-build/linux-64/nbex-0.3.1-py38_0.tar.bz2 -o build/conda-conv
 
 conda-install: clean ## install the package into the current conda environment
 	conda develop .
