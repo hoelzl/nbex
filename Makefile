@@ -85,18 +85,18 @@ install: clean ## install the package to the active Python's site-packages
 	pip -e install .
 
 CONDA_DIST_FILES = \
-	build/conda-build/linux-32/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/linux-64/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/linux-aarch64/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/linux-armv6l/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/linux-armv7l/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/linux-ppc64/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/linux-ppc64le/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/linux-s390x/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/osx-64/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/osx-arm64/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/win-32/nbex-0.3.2-py38_0.tar.bz2 \
-	build/conda-build/win-64/nbex-0.3.2-py38_0.tar.bz2
+	build/conda-build/linux-32/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/linux-64/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/linux-aarch64/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/linux-armv6l/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/linux-armv7l/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/linux-ppc64/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/linux-ppc64le/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/linux-s390x/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/osx-64/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/osx-arm64/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/win-32/nbex-0.4.0-py38_0.tar.bz2 \
+	build/conda-build/win-64/nbex-0.4.0-py38_0.tar.bz2
 
 build/target-file:
 	conda-build . --output-folder build/conda-build --output > build/target-file
