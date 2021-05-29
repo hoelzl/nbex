@@ -132,12 +132,10 @@ build/target-file-39:
 	conda-build . --py 3.9 --output-folder build/conda-build --output > build/target-file-39
 
 conda-release: build/target-file-37 build/target-file-38 build/target-file-39 ## package and upload a release for conda
-	conda convert --platform all `cat build/target-file-37` -o build/conda-build
-	conda convert --platform all `cat build/target-file-38` -o build/conda-build
-	conda convert --platform all `cat build/target-file-39` -o build/conda-build
-
-conda-upload:
-	for item in $(CONDA_DIST_FILES); do anaconda upload --skip-existing $$item; done
+	# conda convert --platform all `cat build/target-file-37` -o build/conda-build
+	# conda convert --platform all `cat build/target-file-38` -o build/conda-build
+	# conda convert --platform all `cat build/target-file-39` -o build/conda-build
+	for item in $(CONDA_DIST_FILES); do anaconda upload --skip-existing $$item; echo "" > /dev/null; done
 
 conda-dist: ## build anaconda packages
 	conda-build --py 3.7 --py 3.8 --py 3.9 --output-folder build/conda-build .
