@@ -56,16 +56,49 @@ class Session:
 session = Session()
 
 
-def display_interactive(obj: object):
+def display_interactive(
+    *objs,
+    include=None,
+    exclude=None,
+    metadata=None,
+    transient=None,
+    display_id=None,
+    **kwargs
+):
     """Display `obj` when in interactive mode."""
     if session.is_interactive:
-        display(obj)
+        display(
+            *objs,
+            include=include,
+            exclude=exclude,
+            metadata=metadata,
+            transient=transient,
+            display_id=display_id,
+            **kwargs
+        )
 
 
-def pprint_interactive(obj: object):
+def pprint_interactive(
+    object,
+    stream=None,
+    indent=1,
+    width=80,
+    depth=None,
+    *,
+    compact=False,
+    sort_dicts=True
+):
     """Pretty-print `obj` when in interactive mode."""
     if session.is_interactive:
-        pprint(obj)
+        pprint(
+            object,
+            stream=stream,
+            indent=indent,
+            width=width,
+            depth=depth,
+            compact=compact,
+            sort_dicts=sort_dicts,
+        )
 
 
 def print_interactive(*obj: object):
