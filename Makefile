@@ -85,7 +85,7 @@ install: clean ## install the package to the active Python's site-packages
 	pip -e install .
 
 CONDA_DIST_FILES = \
-	build/conda-build/noarch/nbex-0.4.0-py_2.tar.bz2
+	build/conda-build/noarch/nbex-0.4.1-py_0.tar.bz2
 
 build/target-file:
 	conda-build . --output-folder build/conda-build --output > build/target-file

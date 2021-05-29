@@ -2,4 +2,4 @@
 
 __author__ = """Matthias Hölzl"""
 __email__ = "tc@xantira.com"
-__version__ = "0.4.0"
+__version__ = "0.4.1"
