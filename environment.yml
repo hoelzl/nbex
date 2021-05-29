@@ -6,7 +6,7 @@ channels:
   - mhoelzl
   # - fastai
 dependencies:
-  - python>=3.8
+  - python=3.8
   - pip>=20.2.4
   # - altair
   - anaconda-client

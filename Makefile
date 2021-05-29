@@ -87,7 +87,7 @@ install: clean ## install the package to the active Python's site-packages
 CONDA_DIST_FILES = \
 	build/conda-build/noarch/nbex-0.4.1-py_0.tar.bz2
 
-build/target-file:
+build/target-file: meta.yaml
 	conda-build . --output-folder build/conda-build --output > build/target-file
 
 conda-release: build/target-file ## package and upload a release for conda
