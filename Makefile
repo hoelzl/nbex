@@ -85,28 +85,62 @@ install: clean ## install the package to the active Python's site-packages
 	pip -e install .
 
 CONDA_DIST_FILES = \
-	build/conda-build/linux-32/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/linux-64/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/linux-aarch64/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/linux-armv6l/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/linux-armv7l/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/linux-ppc64/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/linux-ppc64le/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/linux-s390x/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/osx-64/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/osx-arm64/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/win-32/nbex-0.4.0-py38_0.tar.bz2 \
-	build/conda-build/win-64/nbex-0.4.0-py38_0.tar.bz2
+	build/conda-build/linux-32/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/linux-64/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/linux-aarch64/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/linux-armv6l/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/linux-armv7l/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/linux-ppc64/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/linux-ppc64le/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/linux-s390x/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/osx-64/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/osx-arm64/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/win-32/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/win-64/nbex-0.4.0-py37_1.tar.bz2 \
+	build/conda-build/linux-32/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/linux-64/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/linux-aarch64/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/linux-armv6l/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/linux-armv7l/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/linux-ppc64/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/linux-ppc64le/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/linux-s390x/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/osx-64/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/osx-arm64/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/win-32/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/win-64/nbex-0.4.0-py38_1.tar.bz2 \
+	build/conda-build/linux-32/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/linux-64/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/linux-aarch64/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/linux-armv6l/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/linux-armv7l/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/linux-ppc64/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/linux-ppc64le/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/linux-s390x/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/osx-64/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/osx-arm64/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/win-32/nbex-0.4.0-py39_1.tar.bz2 \
+	build/conda-build/win-64/nbex-0.4.0-py39_1.tar.bz2
 
-build/target-file:
-	conda-build . --output-folder build/conda-build --output > build/target-file
+build/target-file-37:
+	conda-build . --py 3.7 --output-folder build/conda-build --output > build/target-file-37
 
-conda-release: build/target-file ## package and upload a release for conda
-	conda convert --platform all `cat build/target-file` -o build/conda-build
-	anaconda upload --skip-existing $(CONDA_DIST_FILES)
+build/target-file-38:
+	conda-build . --py 3.8 --output-folder build/conda-build --output > build/target-file-38
+
+build/target-file-39:
+	conda-build . --py 3.9 --output-folder build/conda-build --output > build/target-file-39
+
+conda-release: build/target-file-37 build/target-file-38 build/target-file-39 ## package and upload a release for conda
+	conda convert --platform all `cat build/target-file-37` -o build/conda-build
+	conda convert --platform all `cat build/target-file-38` -o build/conda-build
+	conda convert --platform all `cat build/target-file-39` -o build/conda-build
+
+conda-upload:
+	for item in $(CONDA_DIST_FILES); do anaconda upload --skip-existing $$item; done
 
 conda-dist: ## build anaconda packages
-	conda-build . --output-folder build/conda-build
+	conda-build --py 3.7 --py 3.8 --py 3.9 --output-folder build/conda-build .
 
 conda-install: clean ## install the package into the current conda environment
 	conda develop .

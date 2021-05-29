@@ -9,11 +9,13 @@ dependencies:
   - python>=3.8
   - pip>=20.2.4
   # - altair
+  - anaconda-client
   # - autoflake
   - black
   - bump2version>=1.0.1
   # - catboost
   - conda-build>=3.21
+  - conda-verify
   - click>=7.1.2
   - coverage>=5.3
   # - dask
@@ -58,11 +60,11 @@ dependencies:
   # - yellowbrick
 
   - pip:
-     - -e .  # install git checkout of br_kg in editable mode
-     # add here only pip-packages that are not available in conda/conda-forge! E.g.:
-     # - icecream
-     # - jax
-     # - numpyro
-     # - funsor
-     # - neptune-client
-     # - neptune-contrib
+    #  - -e .  # install git checkout of br_kg in editable mode
+    # add here only pip-packages that are not available in conda/conda-forge! E.g.:
+    # - icecream
+    # - jax
+    # - numpyro
+    # - funsor
+    # - neptune-client
+    # - neptune-contrib

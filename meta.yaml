@@ -10,7 +10,7 @@ source:
   git_url: https://github.com/hoelzl/nbex.git
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - nbex=nbex.cli:main
   ignore_run_exports:
@@ -21,6 +21,7 @@ requirements:
   host:
     - click >=7.1.2
     - ipython >=6.0
+    - numpy >=1.16
     - pip
     - python
     - pytest-runner >=5.2
